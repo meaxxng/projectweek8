@@ -40,7 +40,7 @@ while (fridge.CurrentTemperature > fridge.TargetTemperature)
 }*/
 
 
-List<ISwitchController> smartphone = [(ISwitchController)computer, AirConditioner];
+List<ISwitchController> smartphone = { (ISwitchController)computer, AirConditioner};
 
 Console.WriteLine("go to home");
 foreach (var switchControl in smartphone)

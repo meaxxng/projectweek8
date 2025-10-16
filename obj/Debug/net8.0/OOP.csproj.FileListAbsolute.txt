@@ -1,0 +1,5 @@
+C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.AssemblyInfoInputs.cache
+C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.AssemblyInfo.cs
+C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.sourcelink.json
