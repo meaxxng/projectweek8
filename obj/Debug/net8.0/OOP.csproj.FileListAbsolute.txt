@@ -13,3 +13,18 @@ C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\refint\OOP.dll
 C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.pdb
 C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\OOP.genruntimeconfig.cache
 C:\Users\user\Documents\GitHub\projectweek8\obj\Debug\net8.0\ref\OOP.dll
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\bin\Debug\net8.0\OOP.exe
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\bin\Debug\net8.0\OOP.deps.json
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\bin\Debug\net8.0\OOP.runtimeconfig.json
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\bin\Debug\net8.0\OOP.dll
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\bin\Debug\net8.0\OOP.pdb
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.AssemblyInfoInputs.cache
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.AssemblyInfo.cs
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.csproj.CoreCompileInputs.cache
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.sourcelink.json
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.dll
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\refint\OOP.dll
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.pdb
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\OOP.genruntimeconfig.cache
+C:\Users\USER\Documents\มอ\ปี 4\MDT 211 ศ\GitHub Desktop\projectweek8\obj\Debug\net8.0\ref\OOP.dll
