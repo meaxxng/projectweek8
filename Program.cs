@@ -1,95 +1,178 @@
-﻿using OOP;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-Computer computer = new Computer();
-//computer.isOn(); //this is a variable... have to print it as Console.Write
-//Console.WriteLine("status: " + computer.isOn);
-
-Microwave microwave = new Microwave();
-//microwave.TurnOn();
-//Console.WriteLine(microwave.isOn);
-
-List<string> flavors = new List<string> { "Rose", "Lilac", "Camomile", "Jasmin" };
-HotTub tub = new HotTub(flavors);
-
-//--------------------------------------------------------------------------------------------
-Fridge fridge = new Fridge();
-/*Console.WriteLine("Fridge current temp : " + fridge.CurrentTemperature);
-fridge.GetCurrentTemperature();*/
-//--------------------------------------------------------------------------------------------
-AirConditioner air = new AirConditioner();
-
-Microwave microwave1 = microwave;
-
-Microwave microwave11 = microwave1;
-
-HotTub tub1 = tub;
-
-//air.TurnOn();
-/*Console.WriteLine("air is turn on : " + air.isOn);*/
-
-/*air.SetTemperature(15);
-while (air.CurrentTemperature > air.TargetTemperature)
+// Interfaces
+interface ISwitchController
 {
-    air.GetCurrentTemperature();
+    bool isOn { get; }
+    void TurnOn();
+    void TurnOff();
 }
 
-while (fridge.CurrentTemperature > fridge.TargetTemperature)
+interface ITemperatureControl
 {
-    fridge.GetCurrentTemperature();
-}*/
-
-
-List<ISwitchController> smartphone = { (ISwitchController)computer, AirConditioner};
-
-Console.WriteLine("go to home");
-foreach (var switchControl in smartphone)
-{
-    switchControl.TurnOn();
-}
-Console.WriteLine("status");
-foreach (var switchControl in smartphone)
-{
-    Console.WriteLine(switchControl.isOn);
+    int CurrentTemperature { get; }
+    int TargetTemperature { get; }
+    void SetTemperature(int target);
+    void GetCurrentTemperature(); // Simulate temp change
 }
 
-List<ITemperatureControl> SmartTemperatureControl = new List<ITemperatureControl>();
-
-fridge.SetTemperature(9);
-air.SetTemperature(15);
-SmartTemperatureControl.Add(fridge);
-SmartTemperatureControl.Add(air);
-
-foreach (var device in SmartTemperatureControl)
+// Base Devices
+class Computer : ISwitchController
 {
-    while (device.CurrentTemperature > device.TargetTemperature)
+    public bool isOn { get; private set; } = false;
+    public void TurnOn() { isOn = true; }
+    public void TurnOff() { isOn = false; }
+}
+
+class Microwave : ISwitchController
+{
+    public bool isOn { get; private set; } = false;
+    public void TurnOn() { isOn = true; }
+    public void TurnOff() { isOn = false; }
+}
+
+class HotTub : ISwitchController
+{
+    public bool isOn { get; private set; } = false;
+    public List<string> Flavors { get; private set; }
+    public HotTub(List<string> flavors) { Flavors = flavors; }
+    public void TurnOn() { isOn = true; }
+    public void TurnOff() { isOn = false; }
+}
+
+// Temperature Devices
+class Fridge : ITemperatureControl
+{
+    public int CurrentTemperature { get; private set; } = 25;
+    public int TargetTemperature { get; private set; } = 5;
+    public void SetTemperature(int target) { TargetTemperature = target; }
+    public void GetCurrentTemperature()
     {
-        air.GetCurrentTemperature();
+        if (CurrentTemperature > TargetTemperature) CurrentTemperature--;
+        Console.WriteLine("Fridge temp: " + CurrentTemperature);
     }
 }
-void FoodMenu()
+
+class AirConditioner : ISwitchController, ITemperatureControl
 {
-    //Food food = new Food(); ------cannot "new" the food because it is abstract
+    public bool isOn { get; private set; } = false;
+    public int CurrentTemperature { get; private set; } = 30;
+    public int TargetTemperature { get; private set; } = 22;
 
-    List<string> toppings = new List<string> { "pine", "cheese", "pepper", "999" };
-    food pizza = new Pizza("Hawaiian", "Very good sir", 250, "XL", toppings);
-    food burger = new Burger("51 bur", "Fabulous", 89, true);
-    //similar with Pizza @@ = new Pizza (@@@); right????
-    //so if we want to collect as many as input orders, you can use front as food, after as "Specific food name"
-    List<food> Order = new List<food>();
-    Order.Add(pizza);
-    Order.Add(burger);
+    public void TurnOn() { isOn = true; }
+    public void TurnOff() { isOn = false; }
 
-    foreach (food yesfood in Order)
+    public void SetTemperature(int target) { TargetTemperature = target; }
+
+    public void GetCurrentTemperature()
     {
-        yesfood.DisplayInfo();
-        yesfood.Eat();
-        yesfood.Prepare();
+        if (CurrentTemperature > TargetTemperature) CurrentTemperature--;
+        Console.WriteLine("AirConditioner temp: " + CurrentTemperature);
     }
-    //burger.Pay(); ---- you can create another method for your own specific food, you just have to define the burger seperately : Burger burger = new Burger (@@@ ,"Pay");
+}
 
-    /* pizza.Eat();
-    pizza.Prepare();
-    pizza.DisplayInfo(); */
+// Abstract Food
+abstract class Food
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public abstract void Eat();
+    public abstract void Prepare();
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Food: {Name}, Description: {Description}");
+    }
+}
 
+// Pizza and Burger
+class Pizza : Food
+{
+    public int Calories { get; set; }
+    public string Size { get; set; }
+    public List<string> Toppings { get; set; }
+
+    public Pizza(string name, string description, int calories, string size, List<string> toppings)
+    {
+        Name = name; Description = description; Calories = calories; Size = size; Toppings = toppings;
+    }
+
+    public override void Eat() => Console.WriteLine($"Eating pizza {Name}...");
+    public override void Prepare() => Console.WriteLine($"Preparing pizza {Name} with toppings: {string.Join(", ", Toppings)}");
+}
+
+class Burger : Food
+{
+    public int Price { get; set; }
+    public bool HasCheese { get; set; }
+
+    public Burger(string name, string description, int price, bool hasCheese)
+    {
+        Name = name; Description = description; Price = price; HasCheese = hasCheese;
+    }
+
+    public override void Eat() => Console.WriteLine($"Eating burger {Name}...");
+    public override void Prepare() => Console.WriteLine($"Preparing burger {Name}, Cheese: {HasCheese}");
+}
+
+// Main Program
+class Program
+{
+    static void Main()
+    {
+        Computer computer = new Computer();
+        Microwave microwave = new Microwave();
+        List<string> flavors = new List<string> { "Rose", "Lilac", "Camomile", "Jasmin" };
+        HotTub tub = new HotTub(flavors);
+
+        Fridge fridge = new Fridge();
+        AirConditioner air = new AirConditioner();
+
+        // SwitchController List
+        List<ISwitchController> smartphone = new List<ISwitchController> { computer, air, microwave, tub };
+
+        Console.WriteLine("Go to home and turn on devices:");
+        foreach (var switchControl in smartphone)
+        {
+            switchControl.TurnOn();
+        }
+
+        Console.WriteLine("Device status:");
+        foreach (var switchControl in smartphone)
+        {
+            Console.WriteLine($"{switchControl.GetType().Name} isOn: {switchControl.isOn}");
+        }
+
+        // Temperature control
+        List<ITemperatureControl> SmartTemperatureControl = new List<ITemperatureControl> { fridge, air };
+        fridge.SetTemperature(9);
+        air.SetTemperature(15);
+
+        foreach (var device in SmartTemperatureControl)
+        {
+            while (device.CurrentTemperature > device.TargetTemperature)
+            {
+                device.GetCurrentTemperature();
+            }
+        }
+
+        // Food Menu
+        FoodMenu();
+    }
+
+    static void FoodMenu()
+    {
+        List<string> toppings = new List<string> { "pine", "cheese", "pepper", "999" };
+        Food pizza = new Pizza("Hawaiian", "Very good sir", 250, "XL", toppings);
+        Food burger = new Burger("51 bur", "Fabulous", 89, true);
+
+        List<Food> Order = new List<Food> { pizza, burger };
+
+        foreach (Food item in Order)
+        {
+            item.DisplayInfo();
+            item.Prepare();
+            item.Eat();
+        }
+    }
 }
